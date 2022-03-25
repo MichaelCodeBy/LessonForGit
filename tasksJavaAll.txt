@@ -1,0 +1,2401 @@
+
+
+Одномерные массивы
+
+// Задание 1
+// В массив A [N] занесены натуральные числа. Найти сумму тех элементов, которые кратны данному К.
+// Задание 2
+// Дана последовательность действительных чисел а1 ,а2 ,..., аn. Заменить все ее члены, большие данного Z, этим числом.
+// Подсчитать количество замен
+// Задание 3
+// Дан массив действительных чисел, размерность которого N. Подсчитать, сколько в нем отрицательных,
+// положительных и нулевых элементов.
+// Задание 4
+// Даны действительные числа а1 ,а2 ,..., аn. Поменять местами наибольший и наименьший элементы.
+// Задание 5
+// Даны целые числа а1 ,а2 ,..., аn. Вывести на печать только те числа, для которых аi > i.
+// Задание 6
+// Задана последовательность N вещественных чисел. Вычислить сумму чисел, порядковые номера которых являются
+// простыми числами.
+// Задание 7
+// Даны действительные числа a1,a2,...,a2n. Найти
+// max(a1 +a2n,a2 +a2n?1,...,an +an+1).
+// Задание 8
+// Дана последовательность целых чисел a1,a2,...,an. Образовать новую последовательность, выбросив из исходной
+// те члены, которые равны min(a1,a2,...,an).
+// Задание 10
+// Дан целочисленный массив с количеством элементов п.
+// Сжать массив, выбросив из него каждый второй элемент (освободившиеся элементы заполнить нулями).
+// Примечание. Дополнительныи? массив не использовать.
+
+
+package com.company;
+// Задание 1
+//В массив A [N] занесены натуральные числа. Найти сумму тех элементов, которые кратны данному К.
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] A = new int[]{30, 23, 93, 23, 28181, 53, 10, 45};
+
+        int k = 3;
+        int sum = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] % k == 0)
+                sum = sum + A[i];
+
+        }
+        System.out.print("Сумма элементов массива А кратных К = " + sum);
+
+
+    }
+
+-------------------------------------------------------------------------------------------------------------------
+
+package com.company;
+// Задание 2
+// Дана последовательность действительных чисел а1 ,а2 ,..., аn. Заменить все ее члены, большие данного Z, этим числом.
+// Подсчитать количество замен
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] a = new int[]{30, 23, 93, 236, 28181, 53, 10, 45};
+
+        int z = 35;
+        int sum = 0;//начнем подсчет не замен с нуля
+        for (int i = 0; i < a.length; i++) { //циклом переберем все цифры массива
+            if (a[i] > z)//если подходит под условие то...
+                a[i] = z;//заменяем
+            else
+                sum++;//подсчет незамен
+        }
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);//вывод обновленного массива(не нужен но для наглядности)
+        }
+        System.out.print("Количество замен = " + (a.length - sum));//no comments...
+
+
+    }
+
+---------------------------------------------------------------------------------------------------------------------
+
+package com.company;
+//Задание 3
+// Дан массив действительных чисел, размерность которого N. Подсчитать, сколько в нем отрицательных,
+// положительных и нулевых элементов.
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] a = new int[]{30, 23, 0, 93, -236, 28181, 0, 53, -10, 45, -833};
+        int nul = 0, otr = 0, plus = 0;
+        for (int i = 0; i < a.length; i++) {//прошлись по массиву
+            if (a[i] == 0) //если равен нулю
+                nul = nul+1;//счетчик
+
+            else if (a[i] < 0)//если меньше нуля
+            otr = otr+1;//счетчик
+
+            else if (a[i] > 0)//если больше нуля
+            plus = plus+1;//счетчик
+
+        }
+        System.out.println("Количество отрицательных=" + otr);// соответственно вывод. и так три раза.
+        System.out.println("Количество положительных=" + plus);
+        System.out.print("Количество нулевых=" + nul);
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------
+
+package com.company;
+// Задание 4
+// Даны действительные числа а1 ,а2 ,..., аn. Поменять местами наибольший и наименьший элементы.
+
+public class Main {
+
+    private static int minArr = 0;
+    private static int maxArr = 0;
+
+    public static void main(String[] args) {
+        int[] a = new int[]{30, 23, 0, 93, -236, 28181, 0, 53, -10, 45, -833, 45};
+//int minArr,maxArr;
+        int max = getMax(a); //вызов метода getMax
+        System.out.println("Максимальное число в массиве а= " + max);
+        int min = getMin(a); //вызов метода getMin
+        System.out.println("Максимальное число в массиве а= " + min);
+        for (int i = 0; i < a.length; i++) {
+            //int minArr = 0, maxArr = 0;
+            if (a[i] == max) { //находим порядковый номер в массиве максимального элемента
+                maxArr = i;//присваиваем переменной
+                System.out.println("порядковый номер в массиве максимального числа=" + maxArr);
+            } else if (a[i] == min) {// номер минимального элемента
+                minArr = i;//присваиваем
+                System.out.println("порядковый номер в массиве минимального числа=" + minArr);
+
+            }
+
+        }
+        // int minArr;
+        chengInt(a, maxArr, minArr);
+        System.out.println("порядковый номер максимального числа=" + maxArr);
+        System.out.println("порядковый номер максимального числа=" + minArr);
+
+        for (int i = 0; i < a.length; i++) { //контроль, вывод массива с замененными элементами
+            System.out.print(a[i] + ",");
+        }
+
+    }
+
+    public static int getMax(int[] inputArray) { //метод вычисляющий максимальный элемент массива
+        int maxValue = inputArray[0];
+        for (int i = 0; i < inputArray.length; i++) {
+            if (inputArray[i] > maxValue) {
+                maxValue = inputArray[i];
+            }
+        }
+        return maxValue;
+    }
+
+    public static int getMin(int[] inputArray) {//  минимальный элемент массива
+        int minValue = inputArray[0];
+        for (int i = 0; i < inputArray.length; i++) {
+            if (inputArray[i] < minValue) {
+                minValue = inputArray[i];
+            }
+        }
+        return minValue;
+
+    }
+
+    private static void chengInt(int[] array, int i, int j) {//метод по замене чисел в массиве
+        int temp = array[i];//сохраняем в отдельную переменную
+        array[i] = array[j];//меняем одну на другую. теперь два одинакоых значения
+        array[j] = temp;// возвращаем значение второй переменной
+
+    }
+
+------------------------------------------------------------------------------------------------------------
+
+package com.company;
+
+// Задание 5
+// Даны целые числа а1 ,а2 ,..., аn. Вывести на печать только те числа, для которых аi > i.
+public class Main {
+
+    // private static int minArr = 0;
+    // private static int maxArr = 0;
+
+    public static void main(String[] args) {
+        int[] array = new int[]{30, 23, 0, 93, 9, 7, 0, 53, 10, 45, 28181, 45,};
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > array.length) //условие при котором число больше индекса
+                System.out.println(array[i]);//вывод на печать
+        }
+    }
+
+-----------------------------------------------------------------------------------------------------------
+
+package com.company;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+import static java.lang.Math.*;
+// Задание 7
+
+// Даны действительные числа a1,a2,...,a2n. Найти
+
+// max(a1 +a2n,a2 +a2n?1,...,an +an+1).
+
+public class Main {
+
+    public static void main(String[] args) {
+
+
+        double[] array = new double[]{30, 224323, 0, 930, -236, 28181, 0, 53, -10, 45, 33, 45};//есть массив целых чисел
+        System.out.println("Максимальная сумма = " + maxSumEvenArray(array)); //вычисление и вывод решения
+    }
+    public static double maxSumEvenArray(double[] array){ // создается метод вычисления макс суммы противоп. эл.
+        double maxSum = array[0] + array[array.length - 1];// вычисляем сумму первых крайних элементов
+        for(int i = 1; i < array.length / 2; i++){ // цикл поиска макс пары
+            if((array[i] + array[array.length - i - 1]) > maxSum){// поиск макса методом перебора
+                maxSum = array[i] + array[array.length - i - 1];// присваивание нового большего значения
+            }
+        }
+        return maxSum;
+    }
+}
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+package com.company;
+
+import java.util.Random;
+import java.util.Scanner;
+// Задание 8
+// Дана последовательность целых чисел a1,a2,...,an. Образовать новую последовательность, выбросив из исходной
+// те члены, которые равны min(a1,a2,...,an).
+
+public class Main {
+
+
+    public static void main(String[] args) {
+
+
+        int[] ints = new int[]{30, 23, 0, 93, -236, 28181, 0, 53, -10, 45, 33, 45};//есть массив целых чисел
+
+        for (int i = 0; i < ints.length; i++) {
+            System.out.print(ints[i] + ", ");//выводим на консоль массив
+        }
+        System.out.println(); // перевод строки
+        int minVal = Integer.MAX_VALUE; //создаю переменную с мин числом
+        for (int tmpEl : ints) minVal = Math.min(minVal, tmpEl); //поиск минимального числа массива
+        int countMinElem = 0; //создаю переменную количества минимальных элементов
+        for (int tmpEl : ints) //цикл перебора массива в поисках мин
+            if (tmpEl == minVal) countMinElem++; //считает минимальные
+
+        int[] newA = new int[ints.length - countMinElem];//создается массив с исключением мин элементов
+        int indexNewArray = 0; //индекс элементов нового массива
+        for (int tmpEl : ints)
+            if (tmpEl != minVal) { //исключение минимального элемента
+                newA[indexNewArray++] = tmpEl; //заполнение нового массива
+                System.out.print(tmpEl + ", ");
+            }
+
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+//  Дан целочисленный массив с количеством элементов п.
+// Сжать массив, выбросив из него каждый второй элемент (освободившиеся элементы заполнить нулями).
+// Примечание. Дополнительныи массив не использовать.
+
+    public static void main(String[] args) {
+        //int n=10;
+       int [] array=new int[]{3,4,1,8,5,3,6,6,23,54};
+        for (int i = 1; i < array.length; i+=2) { // цикл приводмт к каждому второму элементу
+         array[i]=0;// присваиваем этому элементу 0
+
+        }
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]+",");
+        }
+    }
+
+    }
+
+************************************************************************************************************************************
+
+ Циклы
+
+
+// Задание 1
+// Напишите программу, где пользователь вводит любое целое положительное число. А программа суммирует
+// все числа от 1 до введенного пользователем числа
+// Задание 3
+// Найти сумму квадратов первых ста чисел.
+// Задание 4
+// Составить программу нахождения произведения квадратов первых двухсот чисел.
+// Задание 8
+//Даны два числа. Определить цифры, входящие в запись как первого так и второго числа
+***********************************************************************************************************************************
+
+package com.company;
+import java.util.Scanner;
+// Напишите программу, где пользователь вводит любое целое положительное число. А программа суммирует
+// все числа от 1 до введенного пользователем числа
+public class Main {
+
+    public static void main(String[] args) {
+	Scanner console=new Scanner(System.in);
+   
+    int x = console.nextInt();
+
+        int x1= (x*(x+1))/2;  //формула Гаусса вычисления суммы последовательных чисел
+    System.out.println(x1);
+       }
+
+    }
+
+**************************************************************************************************************************************
+
+package com.company;
+import java.util.Scanner;
+
+import static java.lang.Math.pow;
+
+//Найти сумму квадратов первых ста чисел.
+public class Main {
+
+    public static void main(String[] args) {
+int sum=0;
+        for (int i = 1; i <= 100; i++) {
+            //double x = pow(i, 2);
+           int x=(i*i);
+           sum=sum+ x;
+        }
+            System.out.println("Сумма квадратов чисел от 1 до 100 = "+sum);
+
+    }
+}
+
+***************************************************************************************************************************************
+
+package com.company;
+import java.util.Scanner;
+
+import static java.lang.Math.pow;
+
+//Найти сумму квадратов первых ста чисел.
+public class Main {
+
+    public static void main(String[] args) {
+int sum=0;
+        for (int i = 1; i <= 100; i++) {
+            //double x = pow(i, 2);
+           int x=(i*i);
+           sum=sum+ x;
+        }
+            System.out.println("Сумма квадратов чисел от 1 до 100 = "+sum);
+
+    }
+}
+
+***************************************************************************************************************************************
+
+package com.company;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+import static java.lang.Math.pow;
+
+// Задание 4
+// Составить программу нахождения произведения квадратов первых двухсот чисел.
+public class Main {
+
+    public static void main(String[] args) {
+
+            Scanner console=new Scanner(System.in);
+        BigInteger z = BigInteger.valueOf(1); //создание переменной бигинтегер со значением 1
+            int first = console.nextInt(); //insert first number
+            int last = first+200; //вычисление крайнего числа
+            for (int i = first; i <= last; i++) {
+                //double x = pow(i, 2);
+                int prom = (i * i); //промежуточное значение
+                z = z.multiply(BigInteger.valueOf(prom));
+                //z = z * prom;
+            }
+                System.out.println("Произведение квадратов чисел от " + first + " до " + last + " = " + z);
+            }
+        }
+
+*****************************************************************************************************************************************
+
+package com.company;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        double a = -7;
+        double b = 7;
+        double c = 1;
+        double y = 0;
+        for (double x = a; x < b; x += c) {
+            if (x > 2) {
+                y = x + x / 10;
+            } else {
+                y = -x - x / 10;
+            }
+            System.out.printf("x = %5.2f, y = %5.2f\n", x, y);
+
+
+        }
+    }
+}
+
+**********************************************************************************************************************************
+
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int num=7263; 
+        String number = String.valueOf(num);// перевод в строчный тип
+        for(int i = 0; i < number.length(); i++) { //цикл размером в строку
+            int j = Character.digit(number.charAt(i), 10); //присваивание цифры по счету
+            System.out.println("digit of first int: " + j); //вывод в консоль
+        }
+           int num2=92820;
+            String number2 = String.valueOf(num2);
+            for(int i = 0; i < number2.length(); i++) {
+                int j = Character.digit(number2.charAt(i), 10);
+                System.out.println("digit of second int: " + j);
+        }
+
+    }
+}
+
+***************************************************************************************************************************
+
+Линейные программы
+
+// Задание 1
+// Найти значение функции z = (( a - 3) * b/2) + c;
+// Задание 4
+// Дано действительное число R вида nnn.ddd ( три цифровых разряда в дробной и целых частях ) Поменять
+// местами дробную и целую части числа полученное значение числа.
+// Задание 5
+// Дано натуральное число Т, которое представляет собой длительность прошедшего времени в секундах,
+// вывести данное значение о длительности в часах, минутах и секундах
+
+************************************************************************************************************************
+
+public class Solution {//Найти значение функции z = (( a - 3) * b/2) + c;
+
+
+
+        public static void main(String[] args) {
+            func(10, 20, 30);
+        }
+
+        public static void func(int a, int b, int c) {
+
+
+            double z = ((a - 3) * b / 2) + c;
+
+            System.out.println("Otvet z=" + z);
+        }
+    }
+
+***************************************************************************************************************************
+
+package com.company;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+// задача 2 Линейные программы
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int a, b, c;
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Введите a: ");
+        a = scan.nextInt();
+        System.out.print("Введите b: ");
+        b = scan.nextInt();
+        System.out.print("Введите c: ");
+        c = scan.nextInt();
+        double x= (b+ sqrt(b*b+4*a*c))/2*a-pow(a,3)*c+pow(b,-2);
+
+
+        System.out.println("Итого = "+x);
+    }
+
+}
+
+
+*************************************************************************************************************************
+
+package com.company;
+
+import java.util.Scanner;
+
+import static java.lang.Math.*;
+
+// задача 3 Линейные программы
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int x, y;
+        // boolean res = true;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Введите x: ");
+        x = scan.nextInt();
+        System.out.print("Введите y: ");
+        y = scan.nextInt();
+
+        double z = ((sin(x) + cos(x)) / (cos(x) - sin(x))) * tan(x * y);
+
+
+        System.out.println("Итого = " + z);
+    }
+
+}
+
+*******************************************************************************************
+
+public class Solution {
+
+    public static void main(String[] args) {
+        double r = 111.222;
+        int r2 =r;// целое число 111
+        double y = (r * 1000) % 1000 + r2 / 1000.0; //остаток от деления 222+ 111/1000
+        System.out.println(y); // 222.111
+    }
+}
+
+
+********************************************************************************************
+
+public class Solution {
+
+    public static void main(String[] args) {
+        int time = 5380;
+        int minutOll = time / 60; //ощее количество целых минут
+        int secund = time - (minutOll * 60); //  секунд
+        int chas = minutOll / 60; // количество часов
+        int minut = minutOll - (chas * 60); // минут
+
+
+        Sistem.out.println(chas + " Часов," + minut + "Минут, " + secund + "Секунд.");
+    }
+}
+// час= х/3600
+// мин= х/60
+// сек= х-(мин*60)
+
+*********************************************************************************************
+
+package com.company;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+import static java.lang.Math.pow;
+// Задание 7
+
+// Даны действительные числа a1,a2,...,a2n. Найти
+
+// max(a1 +a2n,a2 +a2n?1,...,an +an+1).
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите размер массива N: ");
+        int n = in.nextInt();
+        double[] array = new double[n];
+        if(array.length % 2 != 0){
+            throw new IllegalArgumentException("Размер массива должен быть четным!!!");
+        }
+        System.out.println("Заполните массив: ");
+        for(int i = 0; i < array.length; i++){
+            array[i] = in.nextDouble();
+        }
+        System.out.println("Максимальная сумма = " + maxSumEvenArray(array));
+    }
+    public static double maxSumEvenArray(double[] array){
+        double maxSum = array[0] + array[array.length - 1];
+        for(int i = 1; i < array.length / 2; i++){
+            if((array[i] + array[array.length - i - 1]) > maxSum){
+                maxSum = array[i] + array[array.length - i - 1];
+            }
+        }
+        return maxSum;
+    }
+  }
+}
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Ветвления
+// Задание 1
+// Даны два угла треугольника ( в градусах ). Определить существует ли такой треугольник и если да, то
+// будет ли он прямоугольным
+// Задание 2
+// Найти max{ min ( a, b ), min ( c, d )}
+// Задание 3
+// Даны 3 точки А ( х1, у1 ), В ( х2, у2 ) и С ( х3, у3 ). Определить будут ли они расположены на
+// одной плоскости
+// Задание 4
+// Заданы размеры A, B прямоугольного отверстия и размеры x, y, z кирпича. Определить, пройдет ли кирпич
+// через отверстие
+// Задание 5
+// Вычислить значение функции F(x)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.max.idea;
+
+import java.sql.SQLOutput;
+
+public class main {
+    public static void main(String[] args) {
+        int ugol1=100,ugol2=70;
+        if(ugol1+ugol2<180) {
+            System.out.println("Такой треугольник существует.");
+            if ((ugol1==90 )||(ugol2 == 90))
+                System.out.println("он прямоугольный.");
+            else
+                System.out.println("он не прямоугольный.");
+            //(ugol1==90 )||(ugol2 == 90) ? System.out.println("он прямоугольный."): System.out.println("не прямоугольный.");
+        }
+        else
+            System.out.println("Такой треугольник не существует.");
+    }
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Найти max{ min ( a, b ), min ( c, d )}
+
+package com.max.idea;
+
+public class main {
+    public static void main(String[] args) {
+        int a = 3, b = 5, c = 2, d = 1;
+        System.out.println (Math.max ((Math.min(a, b)),(Math.min(c, d))));
+
+
+    }
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+package com.company;
+//Задание 3
+// Даны 3 точки А ( х1, у1 ), В ( х2, у2 ) и С ( х3, у3 ). Определить будут ли они расположены на
+// одной прямой.
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int x1 = 3, x2 = 5, x3 = 7, y1 = 3, y2 = 5, y3 = 7;
+//Scanner allInt = new Scanner(System.in);
+
+        if ((x3 - x1) * (y2 - y1) == (x2 - x1) * (y3 - y1))
+            System.out.println(" точки с такими координатами будут расположены на одной прямой ");
+        else
+            System.out.println(" точки с такими координатами не будут расположены на одной прямой ");
+    }
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+	int a=3,b=6,c=3,d=3,e=7;//стороны проема и стороны кирпича
+    if ((a>c&&b>d)||(a>d&&b>c)) // примеряем к проему плоскость d-c
+        System.out.println("Кирпичь пройдет в проём");
+    else if  ((a>e&&b>d)||(a>d&&b>e)) // примеряем к проему плоскость d-e
+        System.out.println("Кирпичь пройдет в проём");
+    else if  ((a>e&&b>c)||(a>c&&b>e))// примеряем к проему плоскость c-e
+        System.out.println("Кирпичь пройдет в проём");
+    else // коль досюда дошли то видимо не судьба...
+        System.out.println("ну никак его туда не просунуть.");
+
+    }
+}
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+package com.company;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.print("Insert integer X =");
+        Scanner console = new Scanner(System.in);
+        int x = console.nextInt();//insert x
+
+        if (x <= 3) {
+            System.out.println("F(x)="+(Math.pow(x, 2) - 3 * x + 9));// doit then x<=3
+        } else {
+            System.out.println("F(x)="+1 / (Math.pow(x, 3) + 6));//doit then x>3
+        }
+        System.out.println();
+
+    }
+}
+
+--------------------------------------------------------------------------------------------------------
+
+package com.company;
+
+public class Lesson3_1 {
+    public static void Main(String[] args) {
+        int counter = 1;
+        int[][] matrix = new int[9][9];
+
+        for (int x = 0; x < matrix.length; x++) {
+            for (int y = 0; y < matrix[0].length; y++) {
+                matrix[x][y] = counter;
+                System.out.print(counter + " ");
+                counter++;
+            }
+            System.out.println();
+        }
+
+        for (int x = 0; x < matrix.length; x++) {
+            int[] row = matrix[x];
+        }
+
+    }
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.company;
+//задачи масив массивов. вывести на экран элементы стоящие на диагонали
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Lesson_2 {
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ввведите любое число: "); //задаем размер матрицы
+
+        int n = scan.nextInt();
+        int[][] mat = new int[n][n]; //creat массив массивов  с n размерностью
+// insert array from random
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Random ran = new Random();
+                int r = ran.nextInt(n + 1);
+                boolean b = ran.nextBoolean();// assign plus or minus
+                if (b == false)
+                    r = r / -1;
+                mat[i][j] = r;
+
+            }
+        }
+       // System.out.println(Arrays.deepToString(mat));//print all array
+
+        for (int i = 0; i < n; i++) { 
+            System.out.print(mat[i][i] + ",");// print diagonal of array from left to rite
+        }
+
+    }
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.company;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+import static java.lang.Integer.parseInt;
+
+//задачи масив массивов. Дана матрица, вывести к строку и p столбец этой матицы
+class Lesson_3 {
+    // creat metod out of column
+    public static int[] getColumn(int[][] array, int index) {
+        int[] column = new int[array[0].length];
+        for (int i = 0; i < column.length; i++) {
+            column[i] = array[i][index];
+        }
+        return column;
+
+    }
+
+    // creat metod out of string
+    public static int[] getString(int[][] array, int index) {
+        int[] string = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            string[i] = array[index][i];
+        }
+        return string;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ввведите любое число: "); //задаем размер матрицы
+
+        int n = scan.nextInt();
+        int[][] matrix = new int[n][n]; //creat массив массивов  с n размерностью
+// insert array from random
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Random ran = new Random();
+                int r = ran.nextInt(n + 1);
+                boolean b = ran.nextBoolean();// assign plus or minus
+                if (b == false)
+                    r = r / -1;
+                matrix[i][j] = r;
+
+            }
+        }
+
+        int k, p;
+        //print string
+        System.out.println("Введите переменную к она должна быть >=0 и <" + n);
+        k = scan.nextInt();
+        System.out.println("string-k " + Arrays.toString(getString(matrix, k)));
+
+        //print column
+        System.out.println("Введите переменную p она должна быть >=0 и <" + n);
+        p = scan.nextInt();
+        System.out.println("column-p " + Arrays.toString(getColumn(matrix, p)));
+    }
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.company;
+import java.util.Arrays;
+import java.util.Scanner;
+
+//сформировать квадратную матрицу размером n по представленному образцу. n чётная.
+public class Lesson_4 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ввести четное число -");
+        int n = scan.nextInt();// insert the size of matrix
+        int[][] matrix = new int[n][n]; // create matrix
+        for (int i = 0; i < n; i++) {//insert all cells for 1,2,3....
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = (j + 1);
+
+            }
+        }
+
+        System.out.println(Arrays.deepToString(matrix));//print array for viewing
+        //
+        for (int i = 1; i < n; i += 2) {//insert x-cells for n,....2,1
+            int k = n;
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = (k--);
+
+            }
+        }
+        System.out.println(Arrays.deepToString(matrix));//print array for viewing
+    }
+
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.company;
+import java.util.Scanner;
+
+//Найти все натуральные n-значные числа, цифры которыхобразуют строго возрастающую последовательность
+//(например 1234, 5678). для решения использовать декомпозицию.
+public class Lesson_15 {
+    public static void main(String[] args) {
+        //in view of the dimension of the numbers
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("количество разрядов в числе ");
+        int n = scanner.nextInt();
+
+//создаем массив 10 злементов и заполняем его по порядку цифрами
+        int[] arr = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i + 1;
+        }
+
+        //выводим n значные числа
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println();
+            for (int j = i; j < n+i; j++) {
+                System.out.print(arr[j]);
+            }
+        }
+    }
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.company;
+//n
+// Написать программу, определяющую сумму n-значных чисел, содержащих только нечетные цифры.
+// Определить также сколько четных цифр в найденной сумме. Для решения использовать декомпозицию.
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+
+
+public class Lesson_16<sum> {
+    public static void DigitsInNumber(int number) {
+//метод вычисления суммы нечетных цифр из числа разрядностью n
+        String n = Integer.toString(number);//переводим iteger to String
+        char[] charArray = n.toCharArray();//create char array
+        List<Integer> cia = new ArrayList<Integer>();//creat cia listing
+        for (int i = 0; i < charArray.length; i++) {//incert int to list
+            int c = Character.getNumericValue(charArray[i]);
+            cia.add(c);
+        }
+        System.out.println(cia);// вывод списка цифр числа n-ной разрядности
+        int num = 0;
+        int kolChetCifr=0;
+//выбираем нечетные цифры из числа и складываем
+        for (int i = 0; i < cia.size(); i++) {
+            if (cia.get(i) % 2 != 0)
+                num += cia.get(i);
+            else
+            {
+                System.out.println("Это число " + cia.get(i) + " четное. ");}
+        }
+        System.out.println("Сумма нечетных цифр числа ="+num);
+//int num=num;
+
+
+        //System.out.println("четных цифр в числе суммы нечетных= "+kolChetCifr);
+
+    }
+   public static void SumNechDig(int num) {
+       String m = Integer.toString(num);//переводим iteger to String
+       char[] charArray = m.toCharArray();//create char array
+       List<Integer> cia2 = new ArrayList<Integer>();//creat cia listing
+        for(
+       int i = 0;
+       i<charArray.length;i++)
+
+       {//incert int to list
+           int c = Character.getNumericValue(charArray[i]);
+           cia2.add(c);
+       }
+        System.out.println(cia2);// вывод списка цифр
+
+       int kolChetCifr = 0;
+//выбираем четные цифры из числа и складываем
+        for(
+       int i = 0; i<cia2.size();i++)
+
+       {
+           if (cia2.get(i) % 2 == 0)
+               System.out.println("Это число " + cia2.get(i) + " нечетное. ");
+           else {
+               System.out.println("Это число " + cia2.get(i) + " четное. ");
+           }
+           kolChetCifr++;
+       }
+   }
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Введи кол-во знаков в числе ");
+        int stOfDigit = scan.nextInt();
+        System.out.print("Введи число " + stOfDigit + " знаков ");
+        int number = scan.nextInt();
+
+        DigitsInNumber(number);
+
+
+    }
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+//из заданного числа вычти сумму его чисел и потом из того что получилось опять вычти и так до того пока не выйдет 0
+public class Lesson_17 {
+    // private static int sum = new int ;
+    private static int sum = 0;
+
+    //метод вычисления суммы цифр из числа
+    public static int SumDigitsInNumber(int number) {
+
+        while (number > 0) {
+            sum = sum + number % 10;
+            number = number / 10;
+        }
+      //  System.out.println("The sum is " + sum);
+        return sum;
+
+    }
+
+
+    public static void main(String[] args) {
+
+        int number = 949383;
+        SumDigitsInNumber(number);
+        for (int i = number; number >= 0; number -= sum) {//minus summ of digit from number and go to zero/
+            System.out.println(number);
+
+        }
+    }
+}
+
+_________________________________________________________________________________________________________
+M5
+
+//сформировать квадратную матрицу порядка н по заданному образцу (н четное)
+public class Lesson_M5 {
+    public static void printArray(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println();
+            //System.out.print("Строка " + (i + 1) + ": ");
+            for (int j = 0; j < arr.length; j++) {
+                System.out.print(arr[i][j] + ",");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 8;
+        int delta = 0;
+        int[][] matrix = new int[n][n];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length - i; j++) {
+                delta = j + 1;
+                matrix[j][i] = delta;
+            }
+        }
+        printArray(matrix);
+    }
+}
+
+_______________________________________________________________________________________________________
+M6
+
+//сформировать квадратную матрицу порядка н по заданному образцу (н четное)
+public class Lesson_M6 {
+    public static void printArray(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println();
+            //System.out.print("Строка " + (i + 1) + ": ");
+            for (int j = 0; j < arr.length; j++) {
+                System.out.print(arr[i][j] + ",");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int n = 8;
+        int dat = 1;
+        int[][] matrix = new int[n][n];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length - i; j++) {
+
+                matrix[j][i] = dat;
+            }
+        }
+        //System.out.println(Arrays.deepToString(matrix));//what I see
+
+        printArray(matrix);
+    }
+
+}
+
+
+________________________________________________________________________________________________________
+
+М8
+
+/* в квадратной числовой матрице поменять местами два любых столбца.
+ номера столбцов вводит пользователь с клавиатуры */
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Lesson_M8 {
+    public static void fillArrayRandom(int[][] arr){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                Random ran = new Random();// insert random int to array
+                int r = ran.nextInt(9);
+                arr[i][j] = r;
+            }
+        }
+    }
+    private static void swapColumns(int[][] m, int ft, int sd) {
+        //меняем элементы в каждой строке
+        for(int r=0; r<m.length; r++) {
+            int temp = m[r][ft]; // темпу присваивается значение первого выбранного элемента
+            m[r][ft] = m[r][sd];// первому выбранному присваивается значение второго
+            m[r][sd] = temp;// второму присваивается значение первого через темп
+            // и так по кругу все строки
+        }
+    }
+
+    public static void printArray(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println();
+            for (int j = 0; j < arr.length; j++) {
+                System.out.print(arr[i][j] + ",");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix= new int[10][10];
+        fillArrayRandom(matrix);
+        Scanner scan=new Scanner(System.in);
+        System.out.print("Введите номер первого столбца для замены: ");
+        int first=scan.nextInt();
+        System.out.print("Введите номер второго столбца для замены: ");
+        int second=scan.nextInt();
+
+        printArray(matrix);
+        System.out.println();
+
+        swapColumns(matrix,first,second);
+
+        printArray(matrix);
+    }
+
+}
+
+________________________________________________________________________________________________________________________________________________
+М9
+
+/* Задана матрица неотрицательных чисел.
+ Посчитать сумму элементов в каждом столбце.
+ Определить какой элемент содержит максимальную сумму.*/
+
+import java.util.Arrays;
+import java.util.Random;
+
+//n2
+public class Lesson_M9 {
+    private static int sum;
+    public static void fillArrayRandom(int[][] arr){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                Random ran = new Random();// insert random int to array
+                int r = ran.nextInt(9);
+                arr[i][j] = r;
+            }
+        }
+    }
+    public static void printArray(int [][] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println();
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + " ,");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = new int[10][10];
+        fillArrayRandom(matrix); //заполнение матрицы случайными числами
+        printArray(matrix);//вывод на консоль матрицы
+        int[] temp = new int[10];
+        System.out.println();
+        for (int i = 0; i < matrix.length; i++) {
+            summOfColumn(matrix, i);
+            temp[i] = sum;//заполнение массива темп
+            //System.out.print(temp[i]+" ,");
+        }
+
+        maxSumOfColumn(temp);
+    }
+//подсчет сумм каждого столбца матрицы
+    public static int summOfColumn(int[][] mat, int numOfColumn) {
+        //int sum = 0;
+        for (int i = 0; i < mat.length; i++) {
+            sum = sum + mat[i][numOfColumn];
+        }
+        //System.out.println(sum);
+        return sum;
+
+    }
+
+    public static int maxSumOfColumn(int[] t) {
+        int max = 0;
+        for (int i = 0; i < t.length; i++) {
+
+            if (max < t[i]) {
+                max = t[i];
+            }
+        }
+        System.out.println("Максимальная сумма в столбце матрицы= " + max);
+        return max;
+    }
+}
+
+____________________________________________________________________________________________________________________
+
+М10
+
+
+// найти положительные элементы главной диагонали квадратной матрицы.
+
+public class Lesson_M10 {
+    public static void printArray(int [][] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println();
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + ", ");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ввведите любое число: "); //задаем размер матрицы
+
+        int n = scan.nextInt();
+        int[][] mat = new int[n][n]; //creat массив массивов  с n размерностью
+// insert array from random
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Random ran = new Random();
+                int r = ran.nextInt(n + 1);
+                boolean b = ran.nextBoolean();// assign plus or minus
+                if (b == false)
+                    r = r / -1;
+                mat[i][j] = r;
+            }
+        }
+        printArray(mat);
+        System.out.println();
+        System.out.print("положительные элементы диагонали квадратной матрицы: ");
+        for (int i = 0; i < n; i++) {
+            if (mat[i][i]>0)
+            System.out.print(mat[i][i] + ",");
+        }
+        System.out.println();
+        System.out.print("положительные элементы второй диагонали квадратной матрицы: ");
+        int t=mat.length-1;
+        for (int j = 0; j < mat.length; j++) {
+                if (mat[t][j] > 0) {
+                    System.out.print(mat[t][j] + ",");
+                    System.out.println();
+                }
+            t=t-1;
+            }
+        }
+    }
+
+
+_______________________________________________________________________________________________________________________
+
+М11
+/* матрицу 10 на 20 заполнить случайными числами от 0 до 15.
+Вывести на экран саму матрицу и номера строк, в которых число 5 встречается три и более раз*/
+public class Lesson_M11 {
+    public static void main(String[] args) {
+
+        int[][] mat = new int[10][20]; //creat массив массивов  с размерностью 10 на 20
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                Random ran = new Random();// insert int to array random from 0 to 15
+                int r = ran.nextInt(16);
+                mat[i][j] = r;
+            }
+        }
+        printArray(mat);
+        findIntFiveInStringOfArray(mat);
+    }
+
+    public static void printArray(int[][] matrix) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+            System.out.print("Строка " + (i + 1) + ": ");
+            for (int j = 0; j < 20; j++) {
+                System.out.print(matrix[i][j] + ",");
+            }
+        }
+    }
+
+    public static void findIntFiveInStringOfArray(int[][] matrix) {
+        for (int i = 0; i < 10; i++) {
+            int sum = 0;
+            for (int j = 0; j < 20; j++) {
+                if (matrix[i][j] == 5) {
+                    sum++;
+                } else if (sum ==3) {
+                    System.out.println();
+                    System.out.print("Строка " + (i + 1) + " имеет 3 и более чисел 5 ");
+                    j=20;
+                }else{
+                    continue;
+                }
+            }
+        }
+    }
+
+}
+
+----------------------------------------------------------------------------------------------------------------
+
+
+М12
+/* отсортировать строки матрицы по возрастанию и убыванию значений элементов*/
+
+import com.sun.source.util.SourcePositions;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Random;
+
+public class M_12 {
+
+    public static void main(String[] args) {
+        int[][] mat = new int[10][20]; //creat массив массивов  с размерностью 10 на 20
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
+                Random ran = new Random();// insert int to array random from 0 to 15
+                int r = ran.nextInt(16);
+                mat[i][j] = r;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            Arrays.sort(mat[i]); //отсортировали строки по возрастанию.
+            sortingArrayRevers(mat);
+        }
+        printArray(mat);
+    }
+    public static void sortingArrayRevers(int[][] matrix) {
+        int[] temp = new int[20];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                temp[j] = matrix[i][j];
+                matrix[i][j] = matrix[i][19 - j];
+                matrix[i][19 - j] = temp[j];
+            }
+        }
+    }
+
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println();
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + " ,");
+
+            }
+        }
+    }
+}
+
+**************************************************************************************************************************
+М14
+// сформировать случайную матрицу МхN , состоящую из нулей и единиц, 
+// причем в каждом столбце число единиц = номеру столбца
+public class M_14 {
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println();
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + " ,");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] mat = new int[10][10]; //creat массив массивов  с размерностью любой
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = i; j < mat.length; j++) { // all next column +1
+                int r = 1;// insert int 1 to array
+                mat[i][j] = r;
+            }
+        }
+        //fUr наглядности.
+        printArray(mat);
+    }
+}
+
+*****************************************************************************************************************************
+
+М15
+public class M_15 {
+    private static int bigInt;
+
+    /* Найдите наибольший элемент матрицы и заменить все нечетные элементы на него*/
+    public static void main(String[] args) {
+
+        int[][] mat = new int[10][10]; //creat matrix
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+                Random ran = new Random();// insert random int to array
+                int r = ran.nextInt();
+                mat[i][j] = r;
+            }
+        }
+        printArray(mat);//System.out.println(Arrays.deepToString(mat));
+        findBiggerIntInArray(mat);
+        System.out.println();
+        System.out.println("Это больший элемент в массиве: "+bigInt);
+        replaceOddNumbersToBigint(mat, bigInt);
+        printArray(mat);
+    }
+    //нахожу больший элемент в массиве
+    public static int findBiggerIntInArray(int[][] arr) {
+        bigInt = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (bigInt < arr[i][j]) {
+                    bigInt = arr[i][j];
+                }
+            }
+        }
+        return bigInt;
+    }
+    //меняю все нечетные элементы на наибольший элемент
+    public static void replaceOddNumbersToBigint(int[][] arr, int rp) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i][j] % 2 != 0) {
+                    arr[i][j] = rp;
+                }
+            }
+        }
+    }
+    //вывод на консоль
+    public static void printArray(int [][] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println();
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + " ,");
+
+            }
+        }
+    }
+}
+
+***************************************************************************************************
+
+M16
+//построить магический квадрат
+public class M_16HZ {
+   
+    private static int[][] matrix=new int[5][5];
+
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println();
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + " ,");
+            }
+        }
+    }
+    public static void main(String[] args) {
+
+        insertMagicSquare(matrix,5);
+        printArray(matrix);
+    }
+
+    //заполнение матрицы магического квадрата
+    private static int[][] insertMagicSquare(int [][] matrix, int n) {
+
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(matrix[i], 0);
+        }
+        int count = 1, y = 0, x = matrix.length/2;
+        while (true){
+            matrix[y][x] = count;
+
+            count++;
+            if (((y == 0) && (x >= n-1)) && (matrix[n-1][0] != 0)){
+                y++;
+            }
+            else {
+                y--;
+                if (y < 0) {
+                    y = n - 1;
+                }
+                x++;
+                if (x == n) {
+                    x = 0;
+                }
+                if(matrix[y][x]!=0){
+                    y+=2;
+                    x--;
+                }
+            }
+
+            if(count==n*n+1) break;
+        }
+
+        //System.out.println(Arrays.deepToString(matrix));
+        return matrix;
+    }
+}
+
+
+*************************************************************************************************************
+Sorting_1
+
+/* заданы два одномерных массива с разным количеством элементов и натуральное число к .
+Обьединить их в один массив, включив второй массив между к-м и (к+1)-м элементами первого массива,
+при этом не используя доп массив.*/
+
+public class Sorting_1 {
+    public static void unitedArrays(int [] a1, int [] a2, int k) {
+        int n1 = a1.length;
+        int n2 = a2.length;
+        int i, p;
+
+        int res[] = new int[n1 + n2];
+
+        p = 0;
+        for (i = 0; i < k; i++)
+            res[p++] = a1[i];
+        for (i = 0; i < n2; i++)
+            res[p++] = a2[i];
+        for (i = k; i < n1; i++)
+            res[p++] = a1[i];
+        //System.out.println(Arrays.toString(res));//what I see
+        for (int e = 0; e < res.length; e++) {
+            System.out.print(res[e] + " ,");
+
+        }
+    }
+    public static void main(String[] args) {
+        int[]arr1={2,54,23,9};
+        int[]arr2={52,45,9,6,2,5};
+        int k=3;
+        unitedArrays(arr1,arr2,k);
+
+    }
+}
+
+***********************************************************************************************************************
+
+Sorting_2
+
+/* Даны две последовательности a1<a2<....<an и b1<b2<...<bn
+Образовать из них новую последовательность чисел, чтобы она тоже была неубывающей.
+ Примечание. Доп массив не использовать.
+ */
+public class Sorting_2 {
+
+    public static void unitedArray(int[] array1, int[] array2) {
+        int[] array = new int[array1.length + array2.length];
+        for (int i = 0; i < array1.length; i++) {
+            array[i] = array1[i];
+        }
+        for (int i = array1.length; i < (array1.length + array2.length); i++) {
+            array[i] = array2[i - array1.length];
+        }
+        Arrays.sort(array);
+        System.out.println(Arrays.toString(array));
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {2, 54, 23, 9};
+        int[] arr2 = {52, 45, 9, 6, 2, 5};
+        unitedArray(arr1, arr2);
+
+
+    }
+}
+
+*************************************************************************************************************
+
+Sorting_3
+
+//написать алгоритм сортировки выбором
+public class Sorting_3 {
+    public static void sortingFromBig(int[]arr){
+       int tempInArr=0;
+        for (int i = 0; i < arr.length ; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if(arr[i]<arr[j]){
+                  tempInArr=arr[j];
+                  arr[j]=arr[i];
+                  arr[i]=tempInArr;
+                }
+            }
+
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+    public static void main(String[] args) {
+        int[] arr = {52, 45, 9, 6, 34,96,2, 5};
+        sortingFromBig(arr);
+    }
+}
+
+
+**********************************************************************************************
+
+Sorting_6
+
+// сортировка методом Шелла
+public class Sorting_6 {
+    public static void sortingOfShell(int[] arr) {
+        int d = arr.length / 2;//делим масссив пополам
+        while (d > 0) {
+            for (int i = 0; i < (arr.length - d); i++) {
+                int j = i;
+                //перестановка элементов массива
+                while ((j >= 0) && (arr[j] > arr[j + d])) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + d];
+                    arr[j + d] = temp;
+                    j--;
+                }
+
+            }
+            d = d / 2;//делим части массива еще на две части
+        }
+        System.out.println();
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");//вывод на кансоль
+
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {52, 45, 9, 6, 7,4,34, 96, 2, 5,27};
+        sortingOfShell(arr);
+    }
+}
+***************************************************************************************************
+
+
+import java.util.Scanner;
+
+//Написать метод для нахождения наибольшего общего делителя и наименьшего общего кратного.
+public class D_01 {
+    private static float nod;
+    private static float nok;
+    private static float a;
+    private static float b;
+
+    public static float evklid(float a, float b) {//наибольший общий делитель двух чисел
+        while ((a != 0) && (b != 0)) {
+            if (a > b) {
+                a = a % b;
+            } else {
+                b = b % a;
+            }
+        }
+        nod = a + b;
+        return nod;
+    }
+
+    public static float raschetNOK(float a, float b, float nod) {//наименьшее общее кратное
+        nok = (a * b) / nod;
+        return nok;
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);// insert numbers
+        System.out.print("Введите а ");
+        a=scan.nextFloat();
+        System.out.print("Введите b ");
+        b=scan.nextFloat();
+        evklid(a,b);
+        raschetNOK(a,b,nod);
+        System.out.println("NOD= "+ nod);
+        System.out.println("NOK= "+nok);
+    }
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+import java.util.Scanner;
+
+//Написать метод для нахождения наибольшего общего делителя четырех натуральных чисел.
+public class D_02 {
+
+    //метод вычисления наибольшего общего делителя по формуле Евклида
+    public static void evklid(int a, int b) {
+        while ((a != 0) && (b != 0)) {
+            if (a > b) {
+                a = a % b;
+            } else {
+                b = b % a;
+            }
+        }
+
+        System.out.print(a + b + " ,");
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = new int[4];
+        Scanner scan = new Scanner(System.in);// insert numbers to array
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.print("Введите число: ");
+            numbers[i] = scan.nextInt();
+        }
+        for (int i = 0; i < numbers.length - 1; i++) {
+            System.out.println();
+            evklid(numbers[i], numbers[i + 1]);// run metod of Evklid for numbers
+        }
+    }
+
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+import java.util.Scanner;
+
+import static java.lang.Math.*;
+
+//Вычислить площадь правильного шестиугольника со стороной а , используя метод вычисления площади треугольника.
+public class D_03 {
+    public static Object s;
+    //double a = 0;
+
+    public static double sqwearOfTriangl(double a) {
+// углы треугольника вписанного в правильный шестиугольник = 60градусов
+        double angle;
+        //преобразуем градусы в радианы
+        angle = toRadians(60);
+        s = 0.5 * (pow(a, 2)) * ((sin(angle) * sin(angle)) / sin(angle));//расчет площади треугольника
+        return (double) s;
+    }
+
+    public static void main(String[] args) {
+
+        double a;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите размер стороны шестиугольника: ");
+        a= scan.nextDouble();
+        double ofGrans=6;// количество граней многоугольника=кол-во треугольников
+        double squerOfSixGran; //
+        sqwearOfTriangl(a);
+        System.out.println("Площадь треугольника со стороной "+a+" равна "+s);
+        squerOfSixGran=(double)s * ofGrans;
+        System.out.print("Площадь шестиугольника со стороной "+a+" равна "+squerOfSixGran);
+
+    }
+}
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+package com.company;
+
+import java.util.Arrays;
+import java.util.Random;
+
+// составить программу , которая в массиве A[N] находит второе по величине число (вывести на печать число,
+// которое меньше максимального элемента массива, но больше всех остальных элементов)
+public class D_05 {
+    //fill array from random int
+    public static void fillArrayRandom(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            Random ran = new Random();// insert random int to array
+            int r = ran.nextInt(1000);
+            arr[i] = r;
+        }
+    }
+
+
+    public static void main(String[] args) {
+        int[] arr = new int[20];
+        fillArrayRandom(arr);
+        System.out.println(Arrays.toString(arr));//для наглядности заполненный массив
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));//массив отсортированный, где последнее число максимальное
+        if (arr[arr.length-3] < arr [arr.length-2]  && arr[arr.length-2] < arr[arr.length-1]) //Check int
+        {
+            System.out.println("Это число меньше максимального: "+arr[arr.length-2]);// вывод на печать предпоследнего числа
+        } else System.out.println("Какието из чисел равны ( ");
+    }
+}
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+package com.company;
+
+import java.util.Scanner;
+
+//написать метод для проверки, являются ли три числа взаимно простыми
+public class D_06 {
+    private static float a;
+    private static float b;
+    private static float c;
+    private static float nod;
+
+
+    public static float evklid(float a, float b) {//наибольший общий делитель двух чисел
+        while ((a != 0) && (b != 0)) {
+            if (a > b) {
+                a = a % b;
+            } else {
+                b = b % a;
+            }
+        }
+        nod = a + b;
+        return nod;
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);// insert numbers
+        System.out.print("Введите а ");
+        a = scan.nextFloat();
+        System.out.print("Введите b ");
+        b = scan.nextFloat();
+        System.out.print("Введите c ");
+        c = scan.nextFloat();
+
+        evklid(a, b);
+        float nodA=nod;
+        //System.out.println(nodA);
+        evklid(b, c);
+        float nodB=nod;
+        //System.out.println(nodB);
+        evklid(a, c);
+        float nodC=nod;
+        //System.out.println(nodC);
+        if ((nodA==1) && (nodB==1) && (nodC==1)) {
+            System.out.println("Эти три числа: "+a+", "+b+", "+c+ " являются взаимно простыми.");
+        }else{
+            System.out.println("Эти три числа: "+a+", "+b+", "+c+ " не взаимно простые.");
+        }
+    }
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+package com.company;
+
+// написать метод вычисления суммы факториалов всех нечетных чисел от 1 до 9
+public class D_07 {
+    public static int f;
+
+    //метод вычисления факториала числа
+    public static int factorialOfNumber(int x) {
+        f = 1;
+        for (int i = 1; i <= x; i++) {
+            f = f * i;
+        }
+        return f;
+    }
+
+
+    public static void main(String[] args) {
+        int sumF = 0;
+        for (int i = 1; i <= 9; i++) {
+            if (i % 2 == 0) {
+            continue;
+            }else{
+                factorialOfNumber(i);// only negative numbers from 1 to 9
+
+                sumF = sumF + f;
+            }
+        }
+        System.out.println("Сумма факториалов нечетных чисел от 1 до 9 включительно = "+sumF);//проверено на железном феликсе
+    }
+}
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+package com.company;
+
+import java.util.Arrays;
+import java.util.Random;
+
+//Задан массив, определить суммы трех последующих элементов трех последовательностей.
+public class D_08 {
+    public static int sum;
+
+    //fill array from random numbers
+    public static void fillArrayRandom(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            Random ran = new Random();// insert random int to array
+            int r = ran.nextInt(1000);
+            arr[i] = r;
+        }
+    }
+
+    //метод расчета трех последовательных чисел в массиве
+    public static int sumOfThreeNumbersOfArray(int[] arr, int n) {
+        sum = 0;
+        for (int i = n - 1; i < n + 2; i++) {
+            sum = sum + arr[i];
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[6];
+        fillArrayRandom(arr); //fill in an array of numbers
+        System.out.println(Arrays.toString(arr));//для наглядности и проверки работы
+        sumOfThreeNumbersOfArray(arr, 1);// сумма 1,2,3 числа в массиве
+        System.out.println(sum);
+        sumOfThreeNumbersOfArray(arr, 3);// сумма 3,4,5 чисел в массиве
+        System.out.println(sum);
+        sumOfThreeNumbersOfArray(arr, 4);// сумма 4,5,6 чисел в массиве
+        System.out.println(sum);
+
+    }
+
+}
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+package com.company;
+
+import java.util.Scanner;
+
+import static java.lang.Math.sqrt;
+
+//даны числа x,y,z,t-длины сторон четырехугольника. Угол между х у прямой. Написать методы вычисления его площади
+public class D_09 {
+    public static double x;
+    public static double y;
+    public static double z;
+    public static double t;
+    public static double s1;
+    public static double b;// гипотенуза
+    public static double sqver;
+
+    //расчет площади прямоугольного треугольника
+    public static double sqverOfTriangl(double x, double y){
+        s1=(x*y)/2;
+        return s1;
+    }
+    //расчет гипотенузы прямоугольного треугольника
+    public static double gipotenuzaOfTringle(double x,double y){
+        b=sqrt(x*2+y*2);
+        return b;
+    }
+    //расчет площади треугольника по трем сторонам
+public static double sqverOfTriangleFromThreeSide(double z,double t,double b){
+        double p=(z+t+b)/2;
+        sqver=sqrt(p*(p-z)*(p-t)*(p-b));
+        return sqver;
+}
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);// insert numbers
+        System.out.print("Введите x ");
+        x = scan.nextDouble();
+        System.out.print("Введите y ");
+        y = scan.nextDouble();
+        System.out.print("Введите z ");
+        z = scan.nextDouble();
+        System.out.print("Введите t ");
+        t = scan.nextDouble();
+        gipotenuzaOfTringle(x,y);
+        System.out.println("Гипотенуза= "+b);
+        sqverOfTriangl(x,y);
+        System.out.println("Площадь прямоугольного треугольника= "+ s1);
+        sqverOfTriangleFromThreeSide(z,t,b);
+        System.out.println("Площадь треугольника по трем сторонам= "+sqver);
+        double sqverOfquadrangle=s1+sqver;
+        System.out.println("Площадь прямоугольника= "+sqverOfquadrangle);
+
+    }
+}
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+package com.company;
+
+import java.util.Arrays;
+
+//Дано натуральное число N Написать метод для формирования массива,
+// элементами которого являются цифры числа N
+public class D_10 {
+    //public static int s;
+    public static int count;
+
+    //подсчет количества цифр в числе
+    public static int getCountsOfDigits(int a) {
+        while (a != 0) {
+            count++;
+            a /= 10;
+        }
+        return count;
+    }
+
+    //заполнение массива цифрами из числа.
+    public static void numberToDigits(int a, int count) {
+        int[] digits = new int[count];
+        int d = 0;
+        int s;
+
+        while (a > 0) {
+            s = (a % 10);
+            a = a / 10;
+            digits[d] = s;
+            d++;
+        }
+        System.out.println(Arrays.toString(digits));
+    }
+
+    public static void main(String[] args) {
+        int a = 74373;
+        getCountsOfDigits(a);
+        numberToDigits(a, count);
+    }
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+package com.company;
+
+public class D_11 {
+    public static int count;
+//расчитать в каком из предложенных чисел больше цифр
+    //подсчет количества цифр в числе
+    public static int getCountsOfDigits(int a) {
+        while (a != 0) {
+            count++;
+            a /= 10;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int a = 73734;
+        int b = 834456;
+        getCountsOfDigits(a);
+        int countA = count;
+        count = 0;
+        getCountsOfDigits(b);
+        int countB = count;
+        if (countA > countB) {
+            System.out.println("В числе \"А\" больше цифр чем в числе \"В\"");
+        } else if (countA == countB) {
+            System.out.println("В числе \"B\" и в числе \"A\" равное количество цифр ");
+        } else {
+            System.out.println("В числе \"B\" больше цифр чем в числе \"A\"");
+
+        }
+    }
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+EPAM tasks from Blinov
+__________________________________
+
+package com.company;
+
+import java.util.Scanner
+
+// Задания к главе 2
+// Ввести N чисел, найти самое короткое и самое длинное число.
+// Вывести найденные числа и их длину.
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int n; //количество strings
+        String[] text; //creat array
+        Scanner scan = new Scanner(System.in); //switch Scanner
+        System.out.print("Ввведите количество строк-");
+        if (scan.hasNextInt()) { // if integer then TRUE
+
+            n = Integer.parseInt(scan.nextLine()); // insert array index
+            int indexMax = 0;
+            int indexMin = 0;
+            text = new String[n]; //array with "n" strings
+            System.out.println("Введите"+n+"чисел с переводом строки-");
+            for (int i = 0; i < n; i++) {// cicl for find Min  and Max
+                text[i] = scan.nextLine();// заполнение Array
+                if (text[i].length() <= text[indexMin].length())
+                    indexMin = i;
+                if (text[i].length() >= text[indexMax].length())
+                    indexMax = i;
+            }
+
+            System.out.printf("MIN (%d): \"%s\"%n", text[indexMin].length(), text[indexMin]);
+            System.out.printf("MAX (%d): \"%s\"%n", text[indexMax].length(), text[indexMax]);
+        }
+    }
+    }
+
+
+...............................................................................................................
+
+package com.company;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+// Задания к главе 2 задача 2
+// Ввести N чисел.
+// Упорядочить и вывести числа в порядке возрастания (убывания) значений их длинны.
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int n; //количество строк
+        int[] text; //creat Int array
+        Scanner scan = new Scanner(System.in); //switch Scanner
+        System.out.print("Ввведите количество строк-");
+        if (scan.hasNextInt()) { // if integer then TRUE
+
+            n = scan.nextInt(); // insert array index
+            text = new int[n]; //array with "n" strings
+            System.out.println("Введите " + n + " чисел с переводом строки-");
+            for (int i = 0; i < n; i++) {// insert to array
+                text[i] = scan.nextInt();
+            }
+            Arrays.sort(text);
+            //Выводим отсортированный массив на консоль.
+            for (int i = 0; i < n; i++) {
+                System.out.print(text[i] + "  ");
+            }
+            System.out.println();
+            //Выводим массив в обратной последовательности на консоль.
+            for (int i = n-1; i >= 0; i--) {
+                System.out.print(text[i] + "  ");
+            }
+        }
+    }
+}
+
+...................................................................................................
+
+package com.company;
+
+import java.util.Scanner;
+
+// Задания к главе 2 № 3
+// Ввести N чисел.
+// Вывести числа длинна которых больше и меньше средней и их длину.
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int n; //количество strings
+        String[] text; //create array
+        Scanner scan = new Scanner(System.in); //switch Scanner
+        System.out.print("Ввведите количество строк-");
+        if (scan.hasNextInt()) { // if integer then TRUE
+
+            n = Integer.parseInt(scan.nextLine()); // insert array index
+            int indexMax = 0;
+            int indexMin = 0;
+            int midlIntOfArray =0;
+            int sum = 0;
+
+            text = new String[n]; //array with "n" strings
+            System.out.println("Введите"+n+"чисел с переводом строки-");
+            for (int i = 0; i < n; i++) {
+                text[i] = scan.nextLine();// заполнение Array
+                sum=sum+text[i].length();// summa digits of integers in array
+            }
+                midlIntOfArray=sum/n;
+            System.out.println("средняя длина числа в архиве: " + midlIntOfArray );
+
+            for (int i = 0; i < n; i++) {
+                if (midlIntOfArray > text[i].length())
+                    System.out.print(text[i]+" " );// вывод чисел меньших среднего
+                }
+
+            }
+
+        }
+    }
+
+.................................................................................................
+
+
+
+package com.company;
+
+// Задания к главе 2 B № 1
+// Вывести на экран таблицу умножения.
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[][] tabUmn = new int[10][11];//creat matrix
+        for (int i = 0; i < 10; i++) {
+            System.out.println();
+            for (int j = 1; j < 11; j++) {
+                tabUmn[i][j] = (i + 1) * j;
+                if (tabUmn[i][j]/10<1)
+                    System.out.print(tabUmn[i][j] + "  ");
+                else
+                    System.out.print(tabUmn[i][j] + " ");
+            }
+        }
+
+    }
+}
+
+......................................................................................................
+
+// Задания к главе 2 B № 4
+// Вывести на экран все числа от 1 до 100, которые делятся на 3 без остатка.
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.print("числа от 1 до 100, которые делятся на 3 без остатка: ");
+        for (int i = 1; i < 100; i++) {
+            if (i % 3 == 0)
+                System.out.print(i + ", ");
+        }
+    }
+}
+
+........................................................................................................
+
+package com.company;
+
+// Задания к главе 2 B № 7
+// Написать код программы, которая переводила бы числа из десятичной системы в любую другую.
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scan=new Scanner(System.in);
+        System.out.print("Ввведите любое число: ");
+        int integer=scan.nextInt();
+        System.out.println(Integer.toString(integer, 2));
+        }
+    }
+
+..........................................................................................................
+
+
+package com.company;
+
+// Задания к главе 2 B № 9
+// Ввести число от 1 до 12 Вывести название месяца соответствующего этому числу.
+// Осуществить проверку корректности ввода чисел.
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ввведите любое число: ");
+        int numberOfMonth = scan.nextInt();
+        if (0 < numberOfMonth && numberOfMonth < 13) // correction of integer
+            System.out.print("Good, this month is: ");
+        else
+            System.out.println("Месяца под таким номером нет, мне жаль.");
+        if (numberOfMonth == 1)
+            System.out.println("January");
+        else if (numberOfMonth == 2)
+            System.out.println("February");
+        else if (numberOfMonth == 3)
+            System.out.println("Mart");
+        else if (numberOfMonth == 4)
+            System.out.println("April");
+        else if (numberOfMonth == 5)
+            System.out.println("May");
+        else if (numberOfMonth == 6)
+            System.out.println("June");
+        else if (numberOfMonth == 7)
+            System.out.println("July");
+        else if (numberOfMonth == 8)
+            System.out.println("August");
+        else if (numberOfMonth == 9)
+            System.out.println("September");
+        else if (numberOfMonth == 10)
+            System.out.println("October");
+        else if (numberOfMonth == 11)
+            System.out.println("November");
+        else if (numberOfMonth == 12)
+            System.out.println("December");
+
+    }
+}
+
+.............................................................................................
+
+package com.company;
+
+// Задания к главе 2 С № 1
+// Ввести с консоли n размерность матрицы a[n][n].Задать значения элементов матрицы в размере -n до n.
+// C помощью генератора случайных чисел.
+// упорядочить строки матрицы в порядке возрастания значений элементов k-го столбца.
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Ввведите любое число: ");
+
+        int n = scan.nextInt();
+        int[][] a = new int[n][n]; //массив массивов  с n размерностью
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Random ran = new Random();
+                int r = ran.nextInt(n + 1);
+                boolean b = ran.nextBoolean();// assign plus or minus
+                if (b == false)
+                    r = r / -1;
+                a[i][j] = r;
+            }
+        }
+        for (int i = 0; i < n; i++) {// out to console array
+            for (int j = 0; j < n; j++) {
+                System.out.print(a[i][j] + ",");
+                if (j == n - 1)
+                    System.out.println();
+
+            }
+
+        }
+        System.out.print("Insert number of sorting column-");
+        int k = scan.nextInt();// insert number of sorting column
+
+        int[] arrayLine = new int[n];
+        System.out.println("Вывод " + k + " столбца массива- ");
+        for (int i = 0; i < n; i++) {
+
+            arrayLine[i] = a[i][k];
+            System.out.println(arrayLine[i]);
+
+        }
+        System.out.println("Вывод отсортированного стобца массива");
+        Arrays.sort(arrayLine);
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println(arrayLine[i]);
+        }
+
+    }
+}
+
+*    *    *    *    *    *    *    *    *    *    *    *    *    *    *    *    *
